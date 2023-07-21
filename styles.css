@@ -2,79 +2,45 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom right, #332255, #220055);
-    color: #fff;
+    background: black;
+    overflow: hidden;
   }
   
   header {
-    background: linear-gradient(to bottom, #220055, #330088);
-    padding: 1rem;
-  }
-  
-  nav {
-    text-align: center;
-  }
-  
-  nav ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  nav li {
-    display: inline-block;
-    margin: 0 1rem;
-  }
-  
-  nav a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.2rem;
-  }
-  
-  main {
-    padding: 2rem;
-  }
-  
-  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
     font-size: 4rem;
-    text-align: center;
+    opacity: 0;
   }
   
-  section {
-    padding: 2rem 0;
+  .stars {
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 2rem;
+  .star {
+    width: 2px;
+    height: 2px;
+    background: white;
+    position: absolute;
+    border-radius: 50%;
   }
   
-  h2 {
-    font-size: 2.5rem;
-    text-align: center;
+  /* Additional styles for animations */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
   }
   
-  /* Additional styles for the immersive effects */
-  .animated {
-    visibility: visible;
-    animation-fill-mode: both;
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
   }
   
-  /* Customize the animations and transitions for each section */
-  #home {
-    animation-delay: 0.2s;
-  }
-  
-  #services {
-    animation-delay: 0.4s;
-  }
-  
-  #portfolio {
-    animation-delay: 0.6s;
-  }
-  
-  #contact {
-    animation-delay: 0.8s;
-  }
-  
-  /* You can add more CSS animations or effects using Animate.css classes */  
