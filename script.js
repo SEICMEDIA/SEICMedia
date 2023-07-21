@@ -2,33 +2,43 @@ $(document).ready(function() {
     // Fade in the title
     $('header h1').addClass('animated fadeIn');
   
-    // Generate stars and animate them
-    const totalStars = 100;
-    for (let i = 0; i < totalStars; i++) {
-      createStar();
+    // Create the 3D scene
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('canvas-container').appendChild(renderer.domElement);
+  
+    // Create stars
+    const starGeometry = new THREE.SphereGeometry(0.1);
+    const starMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const stars = new THREE.Group();
+  
+    for (let i = 0; i < 100; i++) {
+      const star = new THREE.Mesh(starGeometry, starMaterial);
+      star.position.set(randomPosition(), randomPosition(), randomPosition());
+      stars.add(star);
     }
+  
+    scene.add(stars);
+  
+    // Set up camera position
+    camera.position.z = 5;
+  
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+  
+      stars.rotation.x += 0.001;
+      stars.rotation.y += 0.001;
+  
+      renderer.render(scene, camera);
+    }
+  
+    animate();
   });
   
-  function createStar() {
-    const star = document.createElement('div');
-    star.classList.add('star');
-    star.style.top = `${randomPosition()}px`;
-    star.style.left = `${randomPosition()}px`;
-    star.style.animationDelay = `${randomDelay()}s`;
-    star.style.animationDuration = `${randomDuration()}s`;
-    star.style.animationIterationCount = 'infinite';
-    document.querySelector('.stars').appendChild(star);
-  }
-  
   function randomPosition() {
-    return Math.floor(Math.random() * window.innerWidth);
-  }
-  
-  function randomDelay() {
-    return Math.random() * 5;
-  }
-  
-  function randomDuration() {
-    return Math.random() * 3 + 1;
+    return Math.random() * 30 - 15;
   }
   
